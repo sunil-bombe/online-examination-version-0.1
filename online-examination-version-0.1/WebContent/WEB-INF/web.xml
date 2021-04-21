@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app>
-
 <servlet>
 <servlet-name>submitanswercontroller</servlet-name>
-<servlet-class>com.webwork.studyonline.controller.SubmitAnswerController</servlet-class>
+<servlet-class>com.webwork.online.examination.controller.SubmitAnswerController</servlet-class>
 </servlet>
 <servlet-mapping>
 <servlet-name>submitanswercontroller</servlet-name>
@@ -13,7 +12,7 @@
 
 <servlet>
 <servlet-name>feedbackcontroller</servlet-name>
-<servlet-class>com.webwork.studyonline.controller.FeedbackController</servlet-class>
+<servlet-class>com.webwork.online.examination.controller.FeedbackController</servlet-class>
 </servlet>
 <servlet-mapping>
 <servlet-name>feedbackcontroller</servlet-name>
@@ -24,7 +23,7 @@
 
 <servlet>
 <servlet-name>subjectcontroller</servlet-name>
-<servlet-class>com.webwork.studyonline.controller.SubjectController</servlet-class>
+<servlet-class>com.webwork.online.examination.controller.SubjectController</servlet-class>
 </servlet>
 <servlet-mapping>
 <servlet-name>subjectcontroller</servlet-name>
