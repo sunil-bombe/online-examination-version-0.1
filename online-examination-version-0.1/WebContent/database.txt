@@ -1,0 +1,9 @@
+CREATE TABLE userfeedback (fId int PRIMARY KEY NOT NULL AUTO_INCRIMENT,
+							 userName varchar(100),
+							  userEmail varchar(100), 
+							  userPhone varchar(100),
+							   userComment varchar(100),
+							    userRemark varchar(100),
+							     userId int REFERENCES user(userId) ON DELETE CASCADE);
+							     
+							     CREATE TABLE userfeedback (fId int PRIMARY KEY NOT NULL AUTO_INCREMENT, userName varchar(100), userEmail varchar(100), userPhone varchar(100),userComment varchar(100), userRemark varchar(100), userId int REFERENCES user(userId) ON DELETE CASCADE);
