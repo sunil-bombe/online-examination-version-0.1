@@ -2,70 +2,60 @@ package com.webwork.online.examination.controller;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import com.webwork.online.examination.model.Answer;
 import com.webwork.online.examination.model.User;
 import com.webwork.online.examination.service.QuestionPaperService;
 import com.webwork.online.examination.service.impl.QuestionPaperServiceImpl;
 
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 public class SubmitAnswerController extends HttpServlet {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private QuestionPaperService questionPaperService = new QuestionPaperServiceImpl();
-	
-	private User user = null;
+    private final QuestionPaperService questionPaperService = new QuestionPaperServiceImpl();
 
-	public void doPost(HttpServletRequest request, HttpServletResponse response) {
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession(false);
+        if (session == null) {
+            // Session not found, redirect or handle error
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Session has expired. Please log in again.");
+            return;
+        }
 
-		HttpSession session = request.getSession(false);
-		if(null!=session) {
-			user = (User) session.getAttribute("user");
-		}
-		
-		int userId = user.getUserId();
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            // User not found in session, handle accordingly
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "User not found. Please log in.");
+            return;
+        }
 
-		int answerCount = questionPaperService.getQuestionCount("Angular");
-		System.out.println(answerCount);
+        int userId = user.getUserId();
+        int answerCount = questionPaperService.getQuestionCount("Angular");
+        
+        Answer[] answers = new Answer[answerCount];
+        for (int i = 0; i < answerCount; i++) {
+            answers[i] = new Answer();
+            answers[i].setUserId(userId);
+            answers[i].setQuestionId(i + 1);
+            answers[i].setSubject("Angular");
+            answers[i].setAnswer(request.getParameter(Integer.toString(i + 1)));
+        }
 
-		Answer[] answer = new Answer[answerCount];
-		for (int i = 0; i < answerCount; i++) {
-			answer[i] = new Answer();
-			answer[i].setUserId(userId);
-			answer[i].setQuestionId(i + 1);
-			answer[i].setSubject("Angular");
-			answer[i].setAnswer(request.getParameter(Integer.toString(i + 1)));
-
-		}
-
-		if (questionPaperService.saveAnswer(answer, answerCount)) {
-			RequestDispatcher rd = request.getRequestDispatcher("user-feedback.jsp");
-			try {
-				rd.forward(request, response);
-			} catch (ServletException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} else {
-			try {
-				response.getWriter().println("Answers Not submitted..!");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-
-	}
+        try {
+            if (questionPaperService.saveAnswer(answers, answerCount)) {
+                request.getRequestDispatcher("user-feedback.jsp").forward(request, response);
+            } else {
+                response.getWriter().println("Answers not submitted. Please try again later.");
+            }
+        } catch (IOException | ServletException e) {
+            // Log the exception (if using a logger)
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An error occurred while processing your request.");
+        }
+    }
 }

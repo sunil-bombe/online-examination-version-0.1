@@ -2,73 +2,63 @@ package com.webwork.online.examination.controller;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import com.webwork.online.examination.model.User;
 import com.webwork.online.examination.service.UserService;
 import com.webwork.online.examination.service.impl.UserServiceImpl;
-@WebServlet("/SaveUser")
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 public class UserController extends HttpServlet {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private UserService userService = new UserServiceImpl();
-	
-	private User user = null;
-	
-	public void doPost(HttpServletRequest request, HttpServletResponse response) {
-		HttpSession session = request.getSession(false);
-		
-		user = (User) session.getAttribute("user");
-		// getting all properties from user Form
-		int userId = user.getUserId();
-		String fullname = request.getParameter("userName").toString();
-		String email = request.getParameter("userEmail").toString();
-		String phone = request.getParameter("userPhone").toString();
-		String birthDate = request.getParameter("userBirth");
-		String college = request.getParameter("userCollege").toString();
+    private final UserService userService = new UserServiceImpl();
 
-		// Set user Object
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession(false);
+        if (session == null) {
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Session has expired. Please log in again.");
+            return;
+        }
 
-		User user = new User();
+        User sessionUser = (User) session.getAttribute("user");
+        if (sessionUser == null) {
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "User not found. Please log in.");
+            return;
+        }
 
-		user.setUserId(userId);
-		user.setUserFullName(fullname);
-		user.setUserEmail(email);
-		user.setUserPhone(phone);
-		user.setUserBirthDate(birthDate);
-		user.setUserCollege(college);
+        // Getting all properties from the user form
+        String fullname = request.getParameter("userName");
+        String email = request.getParameter("userEmail");
+        String phone = request.getParameter("userPhone");
+        String birthDate = request.getParameter("userBirth");
+        String college = request.getParameter("userCollege");
 
-//		creating service object
-//		and call service method
+        // Set user object
+        User user = new User();
+        user.setUserId(sessionUser.getUserId());
+        user.setUserFullName(fullname);
+        user.setUserEmail(email);
+        user.setUserPhone(phone);
+        user.setUserBirthDate(birthDate);
+        user.setUserCollege(college);
 
-		if (userService.saveUser(user)) {
-
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher("user-instructions.jsp");
-			try {
-				requestDispatcher.forward(request, response);
-			} catch (ServletException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} else {
-
-			try {
-				response.getWriter().println("user not saved..!");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-
-	}
+        // Call service method
+        try {
+            if (userService.saveUser(user)) {
+                request.getRequestDispatcher("user-instructions.jsp").forward(request, response);
+            } else {
+                response.getWriter().println("User not saved!");
+            }
+        } catch (IOException | ServletException e) {
+            // Log the exception (if using a logger)
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An error occurred while processing your request.");
+        }
+    }
 }
+ 

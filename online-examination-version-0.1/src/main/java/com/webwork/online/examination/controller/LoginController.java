@@ -2,37 +2,35 @@ package com.webwork.online.examination.controller;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import com.webwork.online.examination.model.User;
 import com.webwork.online.examination.service.LoginService;
 import com.webwork.online.examination.service.impl.LoginServiceImpl;
 
-@WebServlet("/Login")
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 public class LoginController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
 	private LoginService loginService = new LoginServiceImpl();
 
+	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) {
 
-		String username = request.getParameter("username").toString();
+		String username = request.getParameter("username");
 
-		String userpwd = request.getParameter("userpwd").toString();
+		String userpwd = request.getParameter("userpwd");
 
 		HttpSession session = request.getSession();
 
 		User user = loginService.userLogin(username, userpwd);
 		if (null != user) {
-			
-			synchronized(session) {
+			synchronized (session) {
 				if (user.getUserType().contentEquals("Admin")) {
 					session.setAttribute("admin", user);
 
@@ -42,48 +40,28 @@ public class LoginController extends HttpServlet {
 					RequestDispatcher rd = request.getRequestDispatcher("admin.jsp");
 					try {
 						rd.forward(request, response);
-					} catch (ServletException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
+					} catch (ServletException | IOException e) {
 						e.printStackTrace();
 					}
 
 				} else {
 					System.out.println(user.getUserType());
-					session.setAttribute("user", user );
-//					session.setAttribute("userId", user.getUserId());
-//					session.setAttribute("userName", user.getUsername());
+					session.setAttribute("user", user);
 					RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
 					try {
 						rd.forward(request, response);
-					} catch (ServletException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
+					} catch (ServletException | IOException e) {
 						e.printStackTrace();
 					}
-				}	
-				
+				}
 			}
-			
 		} else {
-
 			RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 			try {
 				rd.forward(request, response);
-			} catch (ServletException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
+			} catch (ServletException | IOException e) {
 				e.printStackTrace();
 			}
-
 		}
-
 	}
-
 }

@@ -2,42 +2,40 @@ package com.webwork.online.examination.controller;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.webwork.online.examination.service.UserService;
 import com.webwork.online.examination.service.impl.UserServiceImpl;
 
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 public class UserDeleteController extends HttpServlet {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	private int userId;
-	private UserService userService;
+    private static final long serialVersionUID = 1L;
 
-	public void doGet(HttpServletRequest request, HttpServletResponse response) {
-		userService = new UserServiceImpl();
-		userId = Integer.parseInt(request.getParameter("userId"));
-		if(userService.deleteUser(userId)) {
-			RequestDispatcher rd = request.getRequestDispatcher("admin.jsp");
-			try {
-				rd.forward(request, response);
-			} catch (ServletException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		
-		
-	}
+    private final UserService userService = new UserServiceImpl();
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String userIdParam = request.getParameter("userId");
+        
+        if (userIdParam == null) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "User ID is required.");
+            return;
+        }
+
+        try {
+            int userId = Integer.parseInt(userIdParam);
+            if (userService.deleteUser(userId)) {
+                request.getRequestDispatcher("admin.jsp").forward(request, response);
+            } else {
+                response.sendError(HttpServletResponse.SC_NOT_FOUND, "User not found.");
+            }
+        } catch (NumberFormatException e) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid User ID format.");
+        } catch (ServletException | IOException e) {
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An error occurred while processing your request.");
+        }
+    }
 }

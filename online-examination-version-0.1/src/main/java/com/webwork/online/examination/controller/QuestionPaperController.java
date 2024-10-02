@@ -3,38 +3,42 @@ package com.webwork.online.examination.controller;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.webwork.online.examination.model.QuestionPaper;
 import com.webwork.online.examination.service.QuestionPaperService;
 import com.webwork.online.examination.service.impl.QuestionPaperServiceImpl;
 
-@WebServlet("/QuestionPaper")
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
 public class QuestionPaperController extends HttpServlet {
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    
+    private static final long serialVersionUID = 1L;
+    
+    private final QuestionPaperService questionPaperService = new QuestionPaperServiceImpl();
 
-	private QuestionPaperService questionPaperService = new QuestionPaperServiceImpl();
-	
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException,ServletException {
-		String subject = request.getParameter("subject");
-		String page = request.getParameter("page");
-		List<QuestionPaper> questionPaper = questionPaperService.getQuestionPaper(subject);
-		if(null!= questionPaper) {
-			request.setAttribute("questionPaper", questionPaper);
-			request.setAttribute("subject", subject);
-			RequestDispatcher rd = request.getRequestDispatcher(page);
-			rd.forward(request, response);
-		}
-		
-	}
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
+        String subject = request.getParameter("subject");
+        String page = request.getParameter("page");
+
+        // Validate input parameters to avoid unnecessary calls
+        if (subject != null && page != null) {
+            List<QuestionPaper> questionPapers = questionPaperService.getQuestionPaper(subject);
+            if (questionPapers != null && !questionPapers.isEmpty()) {
+                request.setAttribute("questionPaper", questionPapers);
+                request.setAttribute("subject", subject);
+                RequestDispatcher rd = request.getRequestDispatcher(page);
+                rd.forward(request, response);
+            } else {
+                response.sendError(HttpServletResponse.SC_NOT_FOUND, "No question papers found.");
+            }
+        } else {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid request parameters.");
+        }
+    }
 }

@@ -1,54 +1,94 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<web-app>
-<servlet>
-<servlet-name>submitanswercontroller</servlet-name>
-<servlet-class>com.webwork.online.examination.controller.SubmitAnswerController</servlet-class>
-</servlet>
-<servlet-mapping>
-<servlet-name>submitanswercontroller</servlet-name>
-<url-pattern>/SubmitAnswer</url-pattern>
-</servlet-mapping>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                             http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	version="3.1">
+	<display-name>Online Examination</display-name>
+
+	<!-- LoginController Servlet Mapping -->
+	<servlet>
+		<servlet-name>LoginController</servlet-name>
+		<servlet-class>com.webwork.online.examination.controller.LoginController</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>LoginController</servlet-name>
+		<url-pattern>/Login</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>FeedbackController</servlet-name>
+		<servlet-class>com.webwork.online.examination.controller.FeedbackController</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>FeedbackController</servlet-name>
+		<url-pattern>/saveFeedback</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>LogoutController</servlet-name>
+		<servlet-class>com.webwork.online.examination.controller.LogoutController</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>LogoutController</servlet-name>
+		<url-pattern>/Logout</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>QuestionPaperController</servlet-name>
+		<servlet-class>com.webwork.online.examination.controller.QuestionPaperController</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>QuestionPaperController</servlet-name>
+		<url-pattern>/QuestionPaper</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>SubjectController</servlet-name>
+		<servlet-class>com.webwork.online.examination.controller.SubjectController</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>SubjectController</servlet-name>
+		<url-pattern>/SubjectController</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>SubmitAnswerController</servlet-name>
+		<servlet-class>com.webwork.online.examination.controller.SubmitAnswerController</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>SubmitAnswerController</servlet-name>
+		<url-pattern>/SubmitAnswer</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>UserController</servlet-name>
+		<servlet-class>com.webwork.online.examination.controller.UserController</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>UserController</servlet-name>
+		<url-pattern>/SaveUser</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>UserDeleteController</servlet-name>
+		<servlet-class>com.webwork.online.examination.controller.UserDeleteController</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>UserDeleteController</servlet-name>
+		<url-pattern>/deleteUser</url-pattern>
+	</servlet-mapping>
+	
+	
 
 
-<servlet>
-<servlet-name>feedbackcontroller</servlet-name>
-<servlet-class>com.webwork.online.examination.controller.FeedbackController</servlet-class>
-</servlet>
-<servlet-mapping>
-<servlet-name>feedbackcontroller</servlet-name>
-<url-pattern>/saveFeedback</url-pattern>
-</servlet-mapping>
 
-
-
-<servlet>
-<servlet-name>subjectcontroller</servlet-name>
-<servlet-class>com.webwork.online.examination.controller.SubjectController</servlet-class>
-</servlet>
-<servlet-mapping>
-<servlet-name>subjectcontroller</servlet-name>
-<url-pattern>/newSubject</url-pattern>
-</servlet-mapping>
-
-
-<servlet>
-<servlet-name>userdeletecontroller</servlet-name>
-<servlet-class>com.webwork.studyonline.controller.UserDeleteController</servlet-class>
-</servlet>
-<servlet-mapping>
-<servlet-name>userdeletecontroller</servlet-name>
-<url-pattern>/deleteUser</url-pattern>
-</servlet-mapping>
-
-
-
-<servlet>
-<servlet-name>logoutcontroller</servlet-name>
-<servlet-class>com.webwork.studyonline.controller.LogoutController</servlet-class>
-</servlet>
-<servlet-mapping>
-<servlet-name>logoutcontroller</servlet-name>
-<url-pattern>/Logout</url-pattern>
-</servlet-mapping>
 
 </web-app>
