@@ -53,7 +53,7 @@
 
 	<servlet-mapping>
 		<servlet-name>SubjectController</servlet-name>
-		<url-pattern>/SubjectController</url-pattern>
+		<url-pattern>/newSubject</url-pattern>
 	</servlet-mapping>
 
 	<servlet>

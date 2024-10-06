@@ -111,7 +111,7 @@ body {
   <button type="submit" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
   <p class="mt-5 mb-3 text-muted">
   <a href="ForgotPassword" class="text-center">Forgot Password.?</a><br>
-  &copy;<a href="http://www.sunilbombe.epizy.com" target="_blank">sunilbombe.epizy.com</a>  2020</p>
+  &copy;<a href="http://www.sunilbombe.epizy.com" target="_blank">SkillScore.com</a>  2024</p>
   
 </form>
  

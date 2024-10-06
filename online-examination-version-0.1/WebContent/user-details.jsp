@@ -67,7 +67,7 @@
         <a class="nav-link" href="CheckLogin"> <img src="assets/logo/name.png" style="height:25px;" /><span class="sr-only">(current)</span></a>
       </li>
       
-      <li class="nav-item">
+     <!--  <li class="nav-item">
         <a class="nav-link" href="xyz.html">ADMIN</a>
       </li>
       <li class="nav-item">
@@ -84,7 +84,7 @@
           <a class="dropdown-item" href="#">Another action</a>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
-      </li>
+      </li> -->
       <li class="nav-item">
         <a class="nav-link" href="#" tabindex="-1" ><%= session.getAttribute("adminName") %></a>
       </li>
