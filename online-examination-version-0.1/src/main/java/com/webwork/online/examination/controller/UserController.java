@@ -31,23 +31,15 @@ public class UserController extends HttpServlet {
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "User not found. Please log in.");
             return;
         }
-
-        // Getting all properties from the user form
-        String fullname = request.getParameter("userName");
-        String email = request.getParameter("userEmail");
-        String phone = request.getParameter("userPhone");
-        String birthDate = request.getParameter("userBirth");
-        String college = request.getParameter("userCollege");
-
-        // Set user object
+        
         User user = new User();
+        user.setUserFullName(request.getParameter("userName").trim());
         user.setUserId(sessionUser.getUserId());
-        user.setUserFullName(fullname);
-        user.setUserEmail(email);
-        user.setUserPhone(phone);
-        user.setUserBirthDate(birthDate);
-        user.setUserCollege(college);
-
+        user.setUserEmail(request.getParameter("userEmail"));
+        user.setUserPhone(request.getParameter("userPhone"));
+        user.setUserBirthDate(request.getParameter("userBirth"));
+        user.setUserCollege(request.getParameter("userCollege"));
+        // Getting all properties from the user form
         // Call service method
         try {
             if (userService.saveUser(user)) {

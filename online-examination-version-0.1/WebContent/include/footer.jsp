@@ -73,14 +73,14 @@ footer{
     <!-- Footer Elements -->
   
     <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2020 Copyright:
-      <a href="http://www.sunilbombe.epizy.com">S B Tech (sunilbombe.epizy.com)</a>
+    <div class="footer-copyright text-center py-3">
+      <a href="http://www.sunilbombe.epizy.com">SkillScore.com</a>
     </div>
 
     <div class="row footer_bottom justify-content-center text-center footer-copyright">
       <p class="col-lg-8 col-sm-12 footer-text">
         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved  <i class="fa fa-heart" aria-hidden="true"></i> Sunil Bombe <a href="#" target="_blank">+91 8605705665</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved to <i class="fa fa-heart" aria-hidden="true"></i>SkillScore Team <a href="#" target="_blank"></a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
     </div>
     <!-- Copyright -->
