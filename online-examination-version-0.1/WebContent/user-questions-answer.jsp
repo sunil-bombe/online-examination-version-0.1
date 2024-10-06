@@ -114,7 +114,7 @@ function timer() {
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
- <a class="navbar-brand" href=""><img src="assets/logo/vecter.png" style="height:20px;"/></a>
+ <a class="navbar-brand" href=""><img src="assets/logo/vecter.png" style="height:60px;"/></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample08" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -122,7 +122,7 @@ function timer() {
   <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="CheckLogin"><img src="assets/logo/name.png" style="height:20px;"/><span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="CheckLogin"><img src="assets/logo/name.png" style="height:25px;"/><span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
        <a class="nav-link" href="thank-you.jsp" tabindex="-1">Thank You</a>   
@@ -131,7 +131,7 @@ function timer() {
         <a class="nav-link btn btn-sm btn-primary" href="Logout" tabindex="-1" >Logout</a>
       </li>
        <li class="nav-item">
-       <a class="nav-link" href="#"><% out.print(this.total); %></a>
+      <%--  <a class="nav-link" href="#"><% out.print(this.total); %></a> --%>
       </li>
     </ul>
   </div>

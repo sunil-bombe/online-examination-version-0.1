@@ -2,6 +2,9 @@ package com.webwork.online.examination.controller;
 
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.webwork.online.examination.model.User;
 import com.webwork.online.examination.service.LoginService;
 import com.webwork.online.examination.service.impl.LoginServiceImpl;
@@ -18,9 +21,14 @@ public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private LoginService loginService = new LoginServiceImpl();
+	
+    private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+
 
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) {
+		
+		logger.info("Login User request received");
 
 		String username = request.getParameter("username");
 

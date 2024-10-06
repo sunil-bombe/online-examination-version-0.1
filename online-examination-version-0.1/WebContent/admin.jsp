@@ -62,7 +62,7 @@
  
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
- <a class="navbar-brand" href=""><img src="assets/logo/vecter.png" style="height:20px;"/></a>
+ <a class="navbar-brand" href=""><img src="assets/logo/vecter.png" style="height:60px;"/></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample08" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -73,7 +73,7 @@
         <a class="nav-link" href="CheckLogin"> <img src="assets/logo/name.png" style="height:25px;" /><span class="sr-only">(current)</span></a>
       </li>
       
-      <li class="nav-item">
+     <!--  <li class="nav-item">
         <a class="nav-link" href="xyz.html">ADMIN</a>
       </li>
       <li class="nav-item">
@@ -81,9 +81,9 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="xyz.html">SUBJECTS</a>
-      </li>
+      </li> -->
       
-      <li class="nav-item dropdown">
+      <%-- <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="dropdown08" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
         <div class="dropdown-menu" aria-labelledby="dropdown08">
           <a class="dropdown-item" href="#">Action</a>
@@ -93,7 +93,7 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#" tabindex="-1" ><%= session.getAttribute("adminName") %></a>
-      </li>
+      </li> --%>
        <li class="nav-item">
         <a class="nav-link" href="Logout?status=true" tabindex="-1">Logout</a>
       </li>

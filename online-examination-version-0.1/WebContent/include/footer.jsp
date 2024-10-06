@@ -35,28 +35,28 @@ footer{
           <div class="mb-5 flex-center text-center">
   
             <!-- Facebook -->
-            <a href="https://www.facebook.com/sunil.bombe.75" target="_blank" class="fb-ic">
+            <a href="https://www.facebook.com/SkillScore.com" target="_blank" class="fb-ic">
               <img  src="assets/icons/facebook.png" class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x" />
             </a>
             <!-- Twitter -->
-            <a href="https://twitter.com/bombe_sunil?s=09"  target="_blank" class="tw-ic">
+            <a href="https://twitter.com/SkillScore.com"  target="_blank" class="tw-ic">
               <img src="assets/icons/twitter.png"  class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x" />
             </a>
             <!-- Google +-->
-            <a href="mailto:sunilbombe456@gmail.com" target="_blank" class="gplus-ic">
+            <a href="mailto:SkillScore.com" target="_blank" class="gplus-ic">
               <img src="assets/icons/google.png"  class="fab fa-google-plus-g fa-lg white-text mr-md-5 mr-3 fa-2x" />
             </a>
             <!--Linkedin -->
-            <a href="https://www.linkedin.com/in/sunil-bombe-370266176" target="_blank" class="li-ic">
+            <a href="https://www.linkedin.com/in/SkillScore.com" target="_blank" class="li-ic">
               <img src="assets/icons/linkedin.png"  class="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x" />
             </a>
             <!--Instagram-->
-            <a href="https://www.instagram.com/sunil_bombe_1998" target="_blank" class="ins-ic">
+            <a href="https://www.instagram.com/SkillScore.com" target="_blank" class="ins-ic">
               <img src="assets/icons/instagram.png"  class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x" />
               
             </a>
             <!--Pinterest-->
-            <a href="https://in.pinterest.com/sunilbombe456/" target="_blank" class="pin-ic">
+            <a href="https://in.pinterest.com/SkillScore.com" target="_blank" class="pin-ic">
               <img  src="assets/icons/pinterest.png" class="fab fa-pinterest fa-lg white-text fa-2x" />
             </a>
           </div>
@@ -73,9 +73,9 @@ footer{
     <!-- Footer Elements -->
   
     <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">
-      <a href="http://www.sunilbombe.epizy.com">SkillScore.com</a>
-    </div>
+   <!--  <div class="footer-copyright text-center py-3">
+      <a href="http://SkillScore.com">SkillScore.com</a>
+    </div> -->
 
     <div class="row footer_bottom justify-content-center text-center footer-copyright">
       <p class="col-lg-8 col-sm-12 footer-text">
